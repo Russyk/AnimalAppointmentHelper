@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        console.log("test");
+        // good website for seeing symptoms and diagnoses: https://pets.webmd.com/dogs/symptoms
+        let symptomsAndDiagnosesList = [["vomiting", "itch", "bad breath"], ["Bacterial infection of the gastrointestinal tract", "allergies or dry skin", "Brush/clean their teeth. If it is more serious, it could be an oral infection or gum disease."]]
+
+        function checkSymptoms() {
+            localStorage.clear();
+            displayDiagnoses.innerHTML = "";
+            let s = symptomTextbox.value.toLowerCase();
+            for (let i = 0; i < symptomsAndDiagnosesList[0].length; i++) {
+                if (s.includes(symptomsAndDiagnosesList[0][i])) {
+                    //displayDiagnoses.innerHTML = symptomsAndDiagnosesList[1][i]
+                    localStorage.setItem("1", symptomsAndDiagnosesList[1][i])
+                    break;
+                }
+            }
+        }
+
+        let button = document.querySelector("#submitSymptomsButton").addEventListener("click", checkSymptoms)
+
+        let tipsList = [
+            "Regular Exams are Vital<br><br>Just like you, your pet can get heart problems, develop arthritis, or have a toothache. The best way to prevent such problems or catch them early is to see your veterinarian every year.<br><br>Regular exams are the single most important way to keep pets healthy. Annual vet visits should touch on nutrition and weight control, as well as cover recommended vaccinations, parasite control, dental exam, and health screenings.",
+            "Spay and Neuter Your Pets<br><br>Eight million to 10 million pets end up in U.S. shelters every year. Some are lost, some have been abandoned, and some are homeless.<br><br>Here’s an easy way to avoid adding to that number — spay and neuter your cats and dogs. It’s a procedure that can be performed as early as six to eight weeks of age.<br><br>Spaying and neutering doesn’t just cut down on the number of unwanted pets; it has other substantial benefits for your pet. Studies show it also lowers the risk of certain cancers and reduces a pet’s risk of getting lost by decreasing the tendency to roam.",
+            "Prevent Parasites<br><br>Fleas are the most common external parasite that can plague pets, and they can lead to irritated skin, hair loss, hot spots, and infection. Fleas can also introduce other parasites into your cat or dog. All it takes is for your pet to swallow one flea, and it can to end up with tapeworms, the most common internal parasite affecting dogs and cats.<br><br>Year-round prevention is key. Regular flea and intestinal parasite control, as well as heartworm prevention in endemic areas is important.<br><br>Because some parasite medications made for dogs can be fatal to cats, talk to your vet about keeping your precious pets worm-free, flea-free — and safe."]
+
+        let tipsListIndex = 1;
+        function goThroughTips() {
+            if (tipsListIndex == tipsList.length) {
+                tipsListIndex = 0;
+                tipsList[tipsListIndex]
+                return;
+            }
+            petTips.innerHTML = `${tipsList[tipsListIndex]}`
+            tipsListIndex++;
+        }
+
+        let tipsInterval = setInterval(goThroughTips, 3500)
+        console.log("test2")
+
+    </script>
+}
+
+<div class="text-center">
+
+    <div class="container text-center">
+        <h1>Animal Appointment Helper</h1>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left banner -->
+            <div class="col-4 d-flex">
+                <div class="card" id="leftBanner" style="width: 20rem;">
+                    <img class="card-img-top" src="images/joebidenadoptionpicture.png" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text">Until one has loved an animal--></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- searchbox -->
+            <div class="col-4">
+                <form>
+                    <div class="container text-center">
+                        <label>Describe you pet's symptoms</label>
+                        <input type="text" class="form-control" id="symptomTextbox" placeholder="Enter Symptoms">
+                        <small class="form-text text-muted">We'll never share your data with anyone else.</small>
+                        <!--<input id="submitSymptomsButton" type="button" class="btn btn-primary" value="Submit" asp-action="Results" />-->
+                        <a id ="submitSymptomsButton" class="btn btn-primary" asp-action="Results">Submit</a>
+                    </div>
+                    <div class="container text-center mt-4">
+                        <h3 id="displayDiagnoses" class=""></h3>
+                    </div>
+                </form>
+            </div>
+
+            <!-- right banner -->
+            <div class="col-4 d-flex flex-row-reverse">
+                <div class="card" id="rightBanner" style="width: 20rem;">
+                    <img class="card-img-top" src="images/joebidenadoptionpicture.png" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text">a part of one's soul remains unawakened.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center">
+        <h1>Pet Tips</h1><br />
+        <p id="petTips">
+            Regular Exams are Vital<br><br>Just like you, your pet can get heart problems, develop arthritis, or have a toothache. The best way to prevent such problems or catch them early is to see your veterinarian every year.<br><br>Regular exams are the single most important way to keep pets healthy. Annual vet visits should touch on nutrition and weight control, as well as cover recommended vaccinations, parasite control, dental exam, and health screenings.
+        </p>
+    </div>
+</div>
+
+
+

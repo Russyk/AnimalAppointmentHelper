@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        let g = localStorage.getItem("1");
+        console.log(g)
+        displayResults.innerHTML = `${g}`
+    </script>
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AnimalAppointmentHelper</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<div class="container text-center">
+    <h1>Animal Appointment Helper</h1>
+</div>
+
+<h1 class="text-center">Your Results: </h1><br /><br />
+<h2 class="text-center" id="displayResults">yo</h2>
+
+
+

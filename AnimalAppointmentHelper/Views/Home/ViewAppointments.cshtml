@@ -1,0 +1,18 @@
+﻿@model AnimalAppointmentHelper.Models.Appointments
+
+@{
+    Layout = "_Layout";
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        let r = localStorage.getItem("1");
+
+        display.innerHTML = `${r}`;
+    </script>
+}
+
+<h1>Appointments: </h1>
+<br />
+
+<p id="display"></p>
